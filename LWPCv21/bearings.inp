@@ -1,5 +1,5 @@
 file-mds    ../LWPCv21/output/
-file-lwf    .../LWPCv21/output/
+file-lwf    ../LWPCv21/output/
 case-id     OMEGA coverage of the Mediterranean
   Name the output files
 tx          bearings
