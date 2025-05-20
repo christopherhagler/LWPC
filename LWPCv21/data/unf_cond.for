@@ -13,9 +13,9 @@ c     writes unformatted file: cond$f.dat
       logical       eof
 
 
-      OPEN (15,file='../data/cond$f.dat',status='unknown',
+      OPEN (15,file='../LWPCv21/data/cond$f.dat',status='unknown',
      &      form='unformatted')
-      OPEN (16,file='../data/cond$f.fmt',status='old')
+      OPEN (16,file='../LWPCv21/data/cond$f.fmt',status='old')
 
       eof=.false.
       do while (.not.eof)
