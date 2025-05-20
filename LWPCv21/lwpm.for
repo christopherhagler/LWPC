@@ -766,7 +766,7 @@ c     Get the location of the LWPC data
 c     For this program we assume that there is only the input file name.
       lencmd = command_argument_count()
       if (LenCMD .eq. 0) then
-         file_name='../lwpm'
+         file_name='../LWPCv21/lwpm'
       else
          call get_command_argument(1, file_name)
       end if
