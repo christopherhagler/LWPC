@@ -7,9 +7,9 @@ c     to   unformatted ntia$d.dat
       dimension p(29,16,6),abp(2,6),dud(5,12,5),fam(14,12)
 
 
-      OPEN (10,file='../data/ntia.fmt',
+      OPEN (10,file='../LWPCv21/data/ntia.fmt',
      &         status='old')
-      OPEN (11,file='../data/ntia$d.dat',
+      OPEN (11,file='../LWPCv21/data/ntia$d.dat',
      &         status='unknown',form='unformatted')
 
       do 14 j=1,4
