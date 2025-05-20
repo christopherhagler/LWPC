@@ -455,7 +455,7 @@ c     Get delimiters used in the file names
 
 c     Test for input file
       if (ArgList(1) .eq. null) then
-         run_name='grdPlot'
+         run_name='../LWPCv21/grdPlot'
       else
          run_name=ArgList(1)
       end if
