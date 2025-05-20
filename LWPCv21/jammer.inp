@@ -1,6 +1,6 @@
-file-mds    ../output/
-file-lwf    ../output/
-file-grd    ../output/
+file-mds    ../LWPCv21/output/
+file-lwf    ../LWPCv21/output/
+file-grd    ../LWPCv21/output/
 case-id     Jammer coverage of the Mediterranean
   Name the files
 tx          jam
