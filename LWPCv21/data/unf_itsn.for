@@ -7,9 +7,9 @@ c     to   unformatted itsn$d.dat
       dimension grid(1518)
 
 
-      OPEN (8,file='../data/itsn.fmt',
+      OPEN (8,file='../LWPCv21/data/itsn.fmt',
      &        status='old')
-      OPEN (9,file='../data/itsn$d.dat',
+      OPEN (9,file='../LWPCv21/data/itsn$d.dat',
      &        status='unknown',form='unformatted')
 
       do 14 ii=1,12
