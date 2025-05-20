@@ -310,7 +310,7 @@ c     Get the location of the LWPC data
 
 c     Test for input file
       if (ArgList(1) .eq. null) then
-         run_name='prvwPlot'
+         run_name='../LWPCv21/prvwPlot'
       else
          run_name=ArgList(1)
       end if
