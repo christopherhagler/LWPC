@@ -1,16 +1,11 @@
-CREATE TABLE ionopolar (
-  run           INTEGER,
-  mode          INTEGER,
-  frequency_mhz DOUBLE PRECISION,
-  height_km     DOUBLE PRECISION,
-  sigma         DOUBLE PRECISION,
-  epsr          DOUBLE PRECISION,
-  fofr_mhz      DOUBLE PRECISION,
-  t1            DOUBLE PRECISION,
-  t2            DOUBLE PRECISION,
-  t3            DOUBLE PRECISION,
-  t4            DOUBLE PRECISION,
-  stokes1       DOUBLE PRECISION,
-  stokes2       DOUBLE PRECISION,
-  stokes3       DOUBLE PRECISION
+CREATE TABLE ionorun (
+  run_id          SERIAL       PRIMARY KEY,
+  frequency_json  DOUBLE PRECISION NOT NULL,
+  s0_json         JSONB        NOT NULL,
+  s1_json         JSONB        NOT NULL,
+  s2_json         JSONB        NOT NULL,
+  s3_json         JSONB        NOT NULL,
+  n0              DOUBLE PRECISION NOT NULL,
+  scale_height    DOUBLE PRECISION NOT NULL,
+  collision       DOUBLE PRECISION NOT NULL
 );
