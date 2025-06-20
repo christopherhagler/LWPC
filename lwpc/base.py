@@ -1,10 +1,11 @@
 #!/usr/bin/env python
-from pathlib import Path
-from typing import Dict, Any
-from typing.io import BinaryIO
 import struct
-import numpy as np
 from contextlib import contextmanager
+from pathlib import Path
+from typing import BinaryIO
+from typing import Dict, Any
+
+import numpy as np
 
 
 @contextmanager
