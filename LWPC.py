@@ -64,7 +64,7 @@ def run_lwpc_and_archive_logs():
         print(f"→ Running LWPC on {inp_path.name}")
         subprocess.run(
             [str(lwpc_bin),
-             str("../LWPCV2]/non_uniform/" + inp_path.name.split('.')[0])],
+             str("../LWPCv21/non_uniform/" + inp_path.name.split('.')[0])],
             cwd=str(build_dir),
             check=True
         )
