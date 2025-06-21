@@ -46,9 +46,10 @@ def create_input_files():
 
 def run_lwpc_and_archive_logs():
     script_dir = Path(__file__).resolve().parent
-    lwpc_bin = script_dir.parent / "build" / "lwpc"
-    lwpcv21_dir = script_dir.parent / "LWPCv21"
+    lwpc_bin = script_dir.parent / "LWPC" / "build" / "Iwpc.bin"
+    lwpcv21_dir = script_dir.parent / "LWPC" / "LWPCv21"
     log_dir = lwpcv21_dir / "log"
+    build_dir = script_dir.parent / "LWPC" / "build"
 
     # Sanity checks
     if not INP_DIR.exists():
@@ -61,11 +62,12 @@ def run_lwpc_and_archive_logs():
     # Run LWPC for each .inp file
     for inp_path in sorted(INP_DIR.glob("*.inp")):
         print(f"→ Running LWPC on {inp_path.name}")
-        subprocess.run([str(lwpc_bin), inp_path.name.split('.')[0]], check=True)
+        subprocess.run([str(lwpc_bin), str("../LWPCV2]/non_uniform/" + inp_path.name.split('.')[0])],
+                       cwd=str(build_dir), check=True)
 
     # Archive .log files
     log_dir.mkdir(parents=True, exist_ok=True)
-    for log_file in lwpcv21_dir.glob("*.log"):
+    for log_file in INP_DIR.glob("*.log"):
         print(f"Moving {log_file.name} → {log_dir.name}/")
         shutil.move(str(log_file), str(log_dir / log_file.name))
 
