@@ -37,7 +37,8 @@ def create_input_files():
     INP_DIR.mkdir(parents=True, exist_ok=True)
 
     for prf_path in PRF_DIR.glob('*.prf'):
-        inf_text = TEMPLATE.format(profile=prf_path)
+        prf_file = f"../LWPCv21/Profile/ionosphere/{prf_path.name}"
+        inf_text = TEMPLATE.format(profile=prf_file)
 
         inf_path = INP_DIR / f"{prf_path.stem}.inp"
         inf_path.write_text(inf_text)
