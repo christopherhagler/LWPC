@@ -1,6 +1,11 @@
 #!/usr/bin/env python
+import shutil
+import subprocess
 import sys
 from pathlib import Path
+
+PRF_DIR = Path(__file__).resolve().parent / 'LWPCv21/Profile/ionosphere'
+INP_DIR = Path(__file__).resolve().parent / 'LWPCv21/non_uniform'
 
 
 def create_input_files():
@@ -26,24 +31,50 @@ def create_input_files():
     quit
     """
 
-    PRF_DIR = Path(__file__).resolve().parent / 'LWPCv21/Profile/ionosphere'
-    OUT_DIR = Path(__file__).resolve().parent / 'LWPCv21/non_uniform'
-
     if not PRF_DIR.exists():
         print(f"❌ PRF directory {PRF_DIR!r} does not exist.", file=sys.stderr)
         sys.exit(1)
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    INP_DIR.mkdir(parents=True, exist_ok=True)
 
     for prf_path in PRF_DIR.glob('*.prf'):
         inf_text = TEMPLATE.format(profile=prf_path)
 
-        inf_path = OUT_DIR / f"{prf_path.stem}.inf"
+        inf_path = INP_DIR / f"{prf_path.stem}.inp"
         inf_path.write_text(inf_text)
         print(f"✔️  Wrote {inf_path}")
 
 
+def run_lwpc_and_archive_logs():
+    script_dir = Path(__file__).resolve().parent
+    lwpc_bin = script_dir.parent / "build" / "lwpc"
+    lwpcv21_dir = script_dir.parent / "LWPCv21"
+    log_dir = lwpcv21_dir / "log"
+
+    # Sanity checks
+    if not INP_DIR.exists():
+        sys.exit(f"❌ Input directory not found: {INP_DIR}")
+    if not lwpc_bin.exists():
+        sys.exit(f"❌ LWPC executable not found: {lwpc_bin}")
+    if not lwpcv21_dir.exists():
+        sys.exit(f"❌ LWPCv21 directory not found: {lwpcv21_dir}")
+
+    # Run LWPC for each .inp file
+    for inp_path in sorted(INP_DIR.glob("*.inp")):
+        print(f"→ Running LWPC on {inp_path.name}")
+        subprocess.run([str(lwpc_bin), inp_path.name.split('.')[0]], check=True)
+
+    # Archive .log files
+    log_dir.mkdir(parents=True, exist_ok=True)
+    for log_file in lwpcv21_dir.glob("*.log"):
+        print(f"Moving {log_file.name} → {log_dir.name}/")
+        shutil.move(str(log_file), str(log_dir / log_file.name))
+
+    print(f"✅ All .log files moved into: {log_dir}")
+
+
 def main():
     create_input_files()
+    run_lwpc_and_archive_logs()
 
 
 if __name__ == "__main__":
