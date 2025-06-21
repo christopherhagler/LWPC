@@ -32,7 +32,7 @@ def create_input_files():
     """
 
     if not PRF_DIR.exists():
-        print(f"❌ PRF directory {PRF_DIR!r} does not exist.", file=sys.stderr)
+        print(f"PRF directory {PRF_DIR!r} does not exist.", file=sys.stderr)
         sys.exit(1)
     INP_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -54,11 +54,11 @@ def run_lwpc_and_archive_logs():
 
     # Sanity checks
     if not INP_DIR.exists():
-        sys.exit(f"❌ Input directory not found: {INP_DIR}")
+        sys.exit(f"Input directory not found: {INP_DIR}")
     if not lwpc_bin.exists():
-        sys.exit(f"❌ LWPC executable not found: {lwpc_bin}")
+        sys.exit(f"LWPC executable not found: {lwpc_bin}")
     if not lwpcv21_dir.exists():
-        sys.exit(f"❌ LWPCv21 directory not found: {lwpcv21_dir}")
+        sys.exit(f"LWPCv21 directory not found: {lwpcv21_dir}")
 
     # Run LWPC for each .inp file
     for inp_path in sorted(INP_DIR.glob("*.inp")):
@@ -76,7 +76,7 @@ def run_lwpc_and_archive_logs():
         print(f"Moving {log_file.name} → {log_dir.name}/")
         shutil.move(str(log_file), str(log_dir / log_file.name))
 
-    print(f"✅ All .log files moved into: {log_dir}")
+    print(f"All .log files moved into: {log_dir}")
 
 
 def main():
